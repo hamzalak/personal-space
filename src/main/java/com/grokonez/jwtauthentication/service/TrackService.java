@@ -3,6 +3,7 @@ package com.grokonez.jwtauthentication.service;
 
 import com.grokonez.jwtauthentication.model.MusicTrack;
 import com.grokonez.jwtauthentication.model.User;
+import com.grokonez.jwtauthentication.repository.MusicTrackRepo;
 import com.grokonez.jwtauthentication.repository.RoleRepository;
 import com.grokonez.jwtauthentication.repository.UserRepository;
 import com.grokonez.jwtauthentication.security.jwt.JwtProvider;
@@ -21,6 +22,9 @@ public class TrackService {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    MusicTrackRepo musicTrackRepo ;
 
     @Autowired
     PasswordEncoder encoder;
@@ -46,6 +50,11 @@ public class TrackService {
     }
 
 
+    public void deleteTrack(MusicTrack musicTrack){
+
+       musicTrackRepo.delete(musicTrack);
+
+    }
 
 
 }

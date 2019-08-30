@@ -38,7 +38,9 @@ public class TestRestAPIs {
 	public String projectManagementAccess() {
 		return ">>> Project Management Board";
 	}
-	
+
+
+
 	@GetMapping("/api/test/admin")
 	@PreAuthorize("hasRole('ADMIN')")
 	public List<User> adminAccess() {
@@ -50,7 +52,6 @@ public class TestRestAPIs {
 
 
 	//Ajout de la musique de l'utilisateur en question
-
 	@PostMapping("/api/trackadd")
    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 
@@ -69,7 +70,18 @@ public class TestRestAPIs {
 		   return new ResponseEntity<String>(username,HttpStatus.OK) ;
 
 	   }
-   }
+	}
+
+	@RequestMapping(
+			value = "/api/test/user",
+			method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	public void deleteTrack(@RequestBody MusicTrack musicTrack)
+	{
+
+		trackService.deleteTrack(musicTrack);
+
+	}
 
 
 
