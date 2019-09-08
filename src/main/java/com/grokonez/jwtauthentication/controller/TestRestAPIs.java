@@ -73,7 +73,7 @@ public class TestRestAPIs {
 	}
 
 	@RequestMapping(
-			value = "/api/test/user",
+			value = "/api/deletetrack",
 			method = RequestMethod.DELETE)
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void deleteTrack(@RequestBody MusicTrack musicTrack)
@@ -83,7 +83,26 @@ public class TestRestAPIs {
 
 	}
 
+	@GetMapping("/api/tracks")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 
+	public ResponseEntity<?> getTracksOfCurrentUser(){
 
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		// when there is no user // in which case ?
+
+		if (principal instanceof UserDetails) {
+
+			return new ResponseEntity<Set<MusicTrack>>(trackService.getAllTracks(principal) , HttpStatus.OK);
+
+		}else{
+
+			String username = principal.toString();
+
+			return new ResponseEntity<String>(username,HttpStatus.OK) ;
+
+		}
+	}
 
 }

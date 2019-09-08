@@ -33,6 +33,12 @@ public class User{
     @Size(min=3, max = 50)
     private String username;
 
+
+
+    @NotBlank
+    @Size(min=3, max = 200)
+    private String adresse;
+
     @NaturalId
     @NotBlank
     @Size(max = 50)
@@ -55,6 +61,9 @@ public class User{
                     CascadeType.MERGE
             })
     private Set<MusicTrack> musicTrackGroupe = new HashSet<>() ;
+
+    @OneToOne
+    private UserComplementaryData userComplementaryData ;
 
     public User() {}
 
@@ -117,7 +126,23 @@ public class User{
         return musicTrackGroupe;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
     public void setMusicTrackGroupe(Set<MusicTrack> musicTrackGroupe) {
         this.musicTrackGroupe = musicTrackGroupe;
+    }
+
+    public UserComplementaryData getUserComplementaryData() {
+        return userComplementaryData;
+    }
+
+    public void setUserComplementaryData(UserComplementaryData userComplementaryData) {
+        this.userComplementaryData = userComplementaryData;
     }
 }

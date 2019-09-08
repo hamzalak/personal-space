@@ -8,11 +8,14 @@ import com.grokonez.jwtauthentication.repository.RoleRepository;
 import com.grokonez.jwtauthentication.repository.UserRepository;
 import com.grokonez.jwtauthentication.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class TrackService {
@@ -56,5 +59,13 @@ public class TrackService {
 
     }
 
+    public Set<MusicTrack> getAllTracks(Object principal){
+
+        String username = ((UserDetails)principal).getUsername();
+
+        Optional<User> us = userRepository.findByUsername(username) ;
+
+        return us.get().getMusicTrackGroupe() ;
+    }
 
 }
