@@ -17,17 +17,14 @@ public class UserComplementaryData {
 
     private Long salaryNumber ;
 
-    private String imagePathName ;
-
     @OneToOne(mappedBy = "userComplementaryData")
 
     private User user ;
 
-    public UserComplementaryData(String adresse, Long salaryNumber, String imagePathName, User user) {
+    public UserComplementaryData(String adresse, Long salaryNumber,   User user) {
         this.adresse = adresse;
         this.salaryNumber = salaryNumber;
-        this.imagePathName = imagePathName;
-        this.user = user;
+         this.user = user;
     }
 
     public UserComplementaryData() {
@@ -56,14 +53,6 @@ public class UserComplementaryData {
 
     public void setSalaryNumber(Long salaryNumber) {
         this.salaryNumber = salaryNumber;
-    }
-
-    public String getImagePathName() {
-        return imagePathName;
-    }
-
-    public void setImagePathName(String imagePathName) {
-        this.imagePathName = imagePathName;
     }
 
     public User getUser() {

@@ -64,6 +64,8 @@ public class User{
 
     @OneToOne
     private UserComplementaryData userComplementaryData ;
+    @OneToOne
+    private ImagePath imagePath ;
 
     public User() {}
 
@@ -144,5 +146,13 @@ public class User{
 
     public void setUserComplementaryData(UserComplementaryData userComplementaryData) {
         this.userComplementaryData = userComplementaryData;
+    }
+
+    public ImagePath getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(ImagePath imagePath) {
+        this.imagePath = imagePath;
     }
 }
